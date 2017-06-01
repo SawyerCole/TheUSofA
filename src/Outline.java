@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Outline{
     //Sets a scaling factor so the states can be scaled however the user chooses.
-    public static final int SCALE = 40;
+    public static final int SCALE = 20;
     //Allows the user to enter
     public static void main(String[] args) throws FileNotFoundException{
         intro();
