@@ -32,7 +32,7 @@ public class Outline{
             System.out.println("What would you like to see?");
             String fileToView = files.next() + ".txt";
             try{
-                files = new Scanner(new File("c:\\Users\\Will\\OneDrive\\School\\2016-2017\\Semester 1\\Computer Science\\purple_america\\purple america\\data\\" + fileToView));
+                files = new Scanner(new File("src\\data\\" + fileToView));
                 fileChosen = true;
             }catch(FileNotFoundException e){
                 System.out.println("File not found. Try again.");
