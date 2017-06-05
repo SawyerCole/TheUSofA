@@ -6,16 +6,8 @@ public class Outline{
     //Sets a scaling factor so the states can be scaled however the user chooses.
     public static final int SCALE = 20;
     //Allows the user to enter
-    public static void main(String[] args) throws FileNotFoundException{
-        intro();
-        boolean restart = true;
-        while(restart == true){
-            restart = toContinue(fileToDrawing(fileInput()));
-        }
-        System.out.println("Goodbye!");
-    }
     //The intro text that explains the program
-    public static void intro(){
+    public void intro(){
         System.out.println("This program draws a visualization of");
         System.out.println("data from a given file. Enter");
         System.out.println("- the 2 letter abbreviation for each state");
@@ -25,7 +17,7 @@ public class Outline{
         System.out.println();
     }
     //Allows the user to input what they want to see (a state, the country or the country by county) and it will give the file of the chosen image to the next computer
-    public static Scanner fileInput(){
+    public Scanner fileInput(){
         Scanner files = new Scanner(System.in);
         boolean fileChosen = false;
         while(fileChosen == false){
@@ -42,7 +34,7 @@ public class Outline{
         return files;
     }
     //Draws the lines outlining the states and counties using the latitude and longitude points from the file of the chosen state
-    public static Scanner fileToDrawing(Scanner files){
+    public Scanner fileToDrawing(Scanner files){
         double minLong = files.nextDouble();
         double minLat = files.nextDouble();
         double maxLong = files.nextDouble();
@@ -93,7 +85,7 @@ public class Outline{
         return files;
     }
     //Used to see if the user wants to continue or not
-    public static boolean toContinue(Scanner files){
+    public boolean toContinue(Scanner files){
         files = new Scanner(System.in);
         System.out.print("Would you like to view somewhere new?");
         String viewNew = files.next();
