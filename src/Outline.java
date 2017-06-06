@@ -6,6 +6,9 @@ public class Outline{
     //Sets a scaling factor so the states can be scaled however the user chooses.
     public static final int SCALE = 20;
     //Allows the user to enter
+    public Outline() {
+
+    }
     //The intro text that explains the program
     public void intro(){
         System.out.println("This program draws a visualization of");
