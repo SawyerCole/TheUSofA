@@ -2,12 +2,13 @@
  * Created by ros_vishan on 6/5/2017.
  */
 import javax.swing.JFrame;
+import java.io.FileNotFoundException;
 
 public class TheUSofA extends JFrame {
 
     private Window window = new Window();
 
-    private TheUSofA() {
+    private TheUSofA() throws FileNotFoundException {
         add(window);
         setTitle("Cube");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -18,7 +19,7 @@ public class TheUSofA extends JFrame {
         setResizable(false);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         new TheUSofA();
     }
 }
