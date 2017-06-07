@@ -5,9 +5,20 @@ import java.awt.*;
 public class Outline{
     //Sets a scaling factor so the states can be scaled however the user chooses.
     public static final int SCALE = 20;
-    //Allows the user to enter
-    public Outline() {
+    public String subregionName;
+    public String regionName;
+    public int[] points;
 
+    public int[] getPoints() {
+        return points;
+    }
+
+    public int[] points = new int[4];
+    //Allows the user to enter
+    public Outline(String subregionName, String regionName, int[] points) {
+        this.subregionName = subregionName;
+        this.regionName = regionName;
+        this.points = points;
     }
     //The intro text that explains the program
     public void intro(){
@@ -79,6 +90,7 @@ public class Outline{
                 }
                 //Turned the different latitude and longitude points into ints because drawings can't use doubles
                 g2d.drawLine((int)long2, (int)lat2, (int)long1, (int)lat1);
+                int[] point = {(int) lat2, (int) long2, (int) lat1, (int) long1};
                 long1 = long2;
                 lat1 = lat2;
             }
