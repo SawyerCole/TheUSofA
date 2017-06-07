@@ -13,6 +13,7 @@ public class Window extends JPanel implements ActionListener {
     private JTextField textField;
     private JTextArea textArea;
     private Timer _timer;
+    Outline outline = new Outline();
 
     public Window() throws FileNotFoundException {
         super(new GridBagLayout());
@@ -42,13 +43,17 @@ public class Window extends JPanel implements ActionListener {
         _timer = new Timer(5, e -> paintInterval());
         _timer.start();
 
-        Outline outline = new Outline();
         outline.intro();
-        boolean restart = true;
-        while(restart){
-            restart = outline.toContinue(outline.fileToDrawing(outline.fileInput()));
-        }
-        System.out.println("Goodbye!");
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    createAndShowGUI();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     private void paintInterval() {
@@ -73,6 +78,11 @@ public class Window extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
+        boolean restart = true;
+        while(restart){
+            restart = outline.toContinue(outline.fileToDrawing(outline.fileInput(), g2d));
+        }
+        System.out.println("Goodbye!");
 
     }
     @Override

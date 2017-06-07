@@ -37,14 +37,12 @@ public class Outline{
         return files;
     }
     //Draws the lines outlining the states and counties using the latitude and longitude points from the file of the chosen state
-    public Scanner fileToDrawing(Scanner files){
+    public Scanner fileToDrawing(Scanner files, Graphics2D g2d){
         double minLong = files.nextDouble();
         double minLat = files.nextDouble();
         double maxLong = files.nextDouble();
         double maxLat = files.nextDouble();
         //I added 100 on each side to allow the image to be centered better so the outline of the state could be seen more clearly
-        DrawingPanel panel = new DrawingPanel( (int) ((maxLong - minLong) * SCALE) + (SCALE * 2), (int) ((maxLat - minLat) * SCALE) + (SCALE * 2));
-        Graphics g = panel.getGraphics();
         double lat1;
         double long1;
         double lat2;
@@ -80,7 +78,7 @@ public class Outline{
                     lat2 = lat2 / 1 + 1;
                 }
                 //Turned the different latitude and longitude points into ints because drawings can't use doubles
-                g.drawLine((int)long2, (int)lat2, (int)long1, (int)lat1);
+                g2d.drawLine((int)long2, (int)lat2, (int)long1, (int)lat1);
                 long1 = long2;
                 lat1 = lat2;
             }
@@ -109,4 +107,6 @@ public class Outline{
             return false;
         }
     }
+
+
 }
