@@ -7,13 +7,12 @@ public class Outline{
     public static final int SCALE = 20;
     public String subregionName;
     public String regionName;
-    public int[] points;
+    public int[] points = new int[4];
 
     public int[] getPoints() {
         return points;
     }
 
-    public int[] points = new int[4];
     //Allows the user to enter
     public Outline(String subregionName, String regionName, int[] points) {
         this.subregionName = subregionName;
@@ -91,7 +90,10 @@ public class Outline{
                     lat2 = lat2 / 1 + 1;
                 }
                 //Turned the different latitude and longitude points into ints because drawings can't use doubles
-                int[] point = {(int) lat2, (int) long2, (int) lat1, (int) long1};
+                this.points[0] = (int) lat2;
+                this.points[1] = (int) long2;
+                this.points[2] = (int) lat1;
+                this.points[3] = (int) long1;
                 long1 = long2;
                 lat1 = lat2;
             }
