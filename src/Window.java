@@ -29,12 +29,15 @@ public class Window extends JPanel {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         paintOutline(g2d);
+
     }
 
     private void paintOutline(Graphics2D g2d) {
-
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(0, 40, 1000, 1000);
+        g2d.setColor(Color.BLACK);
         for (int[] cords : outline.getLines()) {
-            g2d.drawLine(cords[0], cords[1], cords[2], cords[3]);
+            g2d.drawLine(cords[1], cords[0] + 30, cords[3], cords[2] + 30);
         }
     }
 }
