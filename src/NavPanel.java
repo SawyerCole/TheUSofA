@@ -45,6 +45,7 @@ public class NavPanel extends JPanel {
                 try {
                     outline.fileInput(stateTextField.getText());
                     outline.fileToDrawing();
+
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                 }
