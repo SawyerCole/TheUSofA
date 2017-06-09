@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -119,6 +120,11 @@ public class Outline {
         return viewNew.charAt(0) == ('y') || viewNew.charAt(0) == ('Y');
     }
 
+    public void clearBoard(Graphics2D g2d) {
+        g2d.setColor(Color.WHITE);
+        g2d.fillRect(0, 40, 1000, 1000);
+        g2d.setColor(Color.BLACK);
+    }
 
     // Getters and Setters
     public ArrayList <int[]> getLines() {

@@ -3,12 +3,14 @@
  */
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.FileNotFoundException;
 
 public class TheUSofA extends JFrame {
     private Outline outline = new Outline();
     private Window window = new Window(outline);
     private NavPanel navigationPanel = new NavPanel(outline);
+    Dimension dimension = new Dimension(900, 600);
 
     private TheUSofA() throws FileNotFoundException {
 
@@ -16,7 +18,9 @@ public class TheUSofA extends JFrame {
         window.add(navigationPanel);
         setTitle("The US of A");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(900, 600);
+
+        setSize(dimension);
+        window.setDimension(getSize());
         setLocationRelativeTo(null);
         setUndecorated(false);
         setVisible(true);
