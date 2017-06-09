@@ -14,12 +14,6 @@ public class Outline {
     Outline() {
     }
 
-//    //Allows the user to enter
-//    Outline(String subregionName, String stateName, int[] lines) {
-//        this.subregionName = subregionName;
-//        this.stateName = stateName;
-//        this.lines = lines;
-//    }
 
     //The intro text that explains the program
     public void intro() {
@@ -50,17 +44,6 @@ public class Outline {
                 }
             }
         }
-//        while(fileChosen == false){
-//            System.out.println("What would you like to see?");
-//            String fileToView = name + ".txt";
-//            try{
-//                file = new Scanner(new File("src\\data\\" + fileToView));
-//                fileChosen = true;
-//            }catch(FileNotFoundException e){
-//                System.out.println("File not found. Try again.");
-//                fileChosen = false;
-//            }
-//        }
     }
 
     //Draws the lines outlining the states and counties using the latitude and longitude lines from the file of the chosen state
@@ -70,9 +53,6 @@ public class Outline {
         double minLat = file.nextDouble();
         double maxLong = file.nextDouble();
         double maxLat = file.nextDouble();
-        //I added 100 on each side to allow the image to be centered better so the outline of the state could be seen more clearly
-//        DrawingPanel panel = new DrawingPanel((int) ((maxLong - minLong) * SCALE) + (SCALE * 2), (int) ((maxLat - minLat) * SCALE) + (SCALE * 2));
-//        Graphics g = panel.getGraphics();
         double lat1;
         double long1;
         double lat2;
