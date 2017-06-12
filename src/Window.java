@@ -9,9 +9,12 @@ public class Window extends JPanel {
     private Timer _timer;
     private Outline outline;
     private Dimension  dimension;
+    private NavPanel navPanel;
 
     public Window(Outline outline) {
         this.outline = outline;
+        navPanel = new NavPanel(outline);
+        add(navPanel);
         setDoubleBuffered(true);
         setFocusable(true);
         _timer = new Timer(5, e -> paintInterval());
@@ -22,6 +25,7 @@ public class Window extends JPanel {
 
 
     private void paintInterval() {
+        //clearBoard = navPanel.getClear();
         this.repaint();
     }
 
@@ -30,9 +34,14 @@ public class Window extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
+        if (navPanel.getClearBoard()) {
+            g2d.setColor(Color.WHITE);
+            g2d.fillRect(0,30,1000,1000);
+            g2d.setColor(Color.BLACK);
+        }
         paintOutline(g2d);
         setDimension(getDimension());
-        System.out.println(dimension.getHeight() + " " + dimension.getWidth());
+        //System.out.println(dimension.getHeight() + " " + dimension.getWidth());
 
     }
 

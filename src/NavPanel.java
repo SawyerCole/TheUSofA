@@ -11,11 +11,12 @@ import java.io.FileNotFoundException;
  * @version 6/8/2017
  */
 public class NavPanel extends JPanel {
-    JLabel stateLabel, countyLabel;
-    JTextField stateTextField, countyTextField;
-    JCheckBox isCounty;
-    JButton viewCountry, submitButton;
-    Outline outline;
+    private JLabel stateLabel, countyLabel;
+    private JTextField stateTextField, countyTextField;
+    private JCheckBox isCounty;
+    private JButton viewCountry, submitButton;
+    private Outline outline;
+    private boolean clearBoard = false;
 
     public NavPanel(Outline outline) {
         this.outline = outline;
@@ -82,6 +83,14 @@ public class NavPanel extends JPanel {
         add(countyLabel);
         add(countyTextField);
         add(submitButton);
+    }
+
+    public boolean getClearBoard() {
+        if (clearBoard) {
+            clearBoard = false;
+            return true;
+        }
+        return false;
     }
 
 }
