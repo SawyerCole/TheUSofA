@@ -44,6 +44,7 @@ public class NavPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    clearBoard = true;
                     outline.fileInput(stateTextField.getText());
                     outline.fileToDrawing();
 
@@ -57,6 +58,7 @@ public class NavPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    clearBoard = true;
                     outline.fileInput("USA");
                     outline.fileToDrawing();
                 } catch (FileNotFoundException e1) {

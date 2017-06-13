@@ -36,7 +36,7 @@ public class Window extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         if (navPanel.getClearBoard()) {
             g2d.setColor(Color.WHITE);
-            g2d.fillRect(0,30,1000,1000);
+            g2d.fillRect(0, 30, 1000, 1000);
             g2d.setColor(Color.BLACK);
         }
         paintOutline(g2d);

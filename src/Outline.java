@@ -49,6 +49,7 @@ public class Outline {
 
     //Draws the lines outlining the states and counties using the latitude and longitude lines from the file of the chosen state
     public void fileToDrawing() throws FileNotFoundException {
+        lines = new ArrayList<>();
         Scanner file = new Scanner(new File("src\\data\\" + stateName + ".txt"));
         double minLong = file.nextDouble();
         double minLat = file.nextDouble();
