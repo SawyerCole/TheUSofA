@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 
 /**
  * NavPanel.java
- * Assignment:
- * Purpose:
+ * Assignment: Final Project
+ * Purpose: Operates the navigation panel at the top of the screen
  *
  * @version 6/8/2017
  */
@@ -16,6 +16,7 @@ public class NavPanel extends JPanel {
     private JCheckBox isCounty;
     private JButton viewCountry, submitButton;
     private Outline outline;
+    private JTextField size;
     private boolean clearBoard = false;
 
     public NavPanel(Outline outline) {
@@ -34,6 +35,7 @@ public class NavPanel extends JPanel {
         countyTextField = new JTextField(15);
         countyTextField.setEnabled(false);
         isCounty = new JCheckBox("This is a County");
+        size
         submitButton = new JButton("Submit");
     }
 
@@ -81,12 +83,13 @@ public class NavPanel extends JPanel {
         add(viewCountry);
         add(stateLabel);
         add(stateTextField);
-        add(isCounty);
-        add(countyLabel);
+        //add(isCounty);
+        //add(countyLabel);
         add(countyTextField);
         add(submitButton);
     }
 
+    // returns a boolean for whether or not we clear the board
     public boolean getClearBoard() {
         if (clearBoard) {
             clearBoard = false;

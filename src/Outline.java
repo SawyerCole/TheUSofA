@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Outline {
     //Sets a scaling factor so the states can be scaled however the user chooses.
-    private static final int SCALE = 20;
+    private int scale = 20;
     private String subregionName;
     private String stateName;
     private ArrayList <int[]> lines = new ArrayList();
@@ -69,8 +69,8 @@ public class Outline {
             String regionName = file.next();
             int points = file.nextInt();
             //Added the scale so that the state/country would be better centered
-            long1 = (file.nextDouble() - minLong) * SCALE + SCALE;
-            lat1 = (maxLat - file.nextDouble()) * SCALE + SCALE;
+            long1 = (file.nextDouble() - minLong) * scale + scale;
+            lat1 = (maxLat - file.nextDouble()) * scale + scale;
             //Subtracted 1 because the first line is already dealt with above
             for (int i = 1; i <= points - 1; i++) {
                 //I have these if statements to make sure that the decimal point is accounted for as turning a double into an int always rounds down
@@ -81,8 +81,8 @@ public class Outline {
                     lat1 = lat1 / 1 + 1;
                 }
                 //Added the scale so the state would be better centered
-                long2 = (file.nextDouble() - minLong) * SCALE + SCALE;
-                lat2 = (maxLat - file.nextDouble()) * SCALE + SCALE;
+                long2 = (file.nextDouble() - minLong) * scale + scale;
+                lat2 = (maxLat - file.nextDouble()) * scale + scale;
                 //I have these if statements to make sure that the decimal point is accounted for as turning a double into an int always rounds down
                 if (long2 % 1 > 0.5) {
                     long2 = long2 / 1 + 1;
@@ -121,14 +121,13 @@ public class Outline {
         return viewNew.charAt(0) == ('y') || viewNew.charAt(0) == ('Y');
     }
 
-    public void clearBoard(Graphics2D g2d) {
-        g2d.setColor(Color.WHITE);
-        g2d.fillRect(0, 40, 1000, 1000);
-        g2d.setColor(Color.BLACK);
-    }
+
 
     // Getters and Setters
+    // Returns an array of an array of points for the lines to be drawn
     public ArrayList <int[]> getLines() {
         return lines;
     }
+    // sets the scale
+    public void setScale(int scale) { this.scale = scale; }
 }
