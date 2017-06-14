@@ -19,6 +19,7 @@ public class NavPanel extends JPanel {
     private JTextField size;
     private boolean clearBoard = false;
 
+
     public NavPanel(Outline outline) {
         this.outline = outline;
         createComponents();
@@ -35,7 +36,7 @@ public class NavPanel extends JPanel {
         countyTextField = new JTextField(15);
         countyTextField.setEnabled(false);
         isCounty = new JCheckBox("This is a County");
-        size
+        size = new JTextField("Change Size: ");
         submitButton = new JButton("Submit");
     }
 
@@ -85,7 +86,8 @@ public class NavPanel extends JPanel {
         add(stateTextField);
         //add(isCounty);
         //add(countyLabel);
-        add(countyTextField);
+        //add(countyTextField);
+        add(size);
         add(submitButton);
     }
 
