@@ -25,7 +25,7 @@ public class Window extends JPanel {
 
 
     private void paintInterval() {
-        //clearBoard = navPanel.getClear();
+        //setMapSize();
         this.repaint();
     }
 
@@ -33,6 +33,7 @@ public class Window extends JPanel {
     @Override
     public void paint(Graphics g) {
         super.paint(g);
+
         Graphics2D g2d = (Graphics2D) g;
         if (navPanel.getClearBoard()) {
             g2d.setColor(Color.WHITE);
@@ -57,4 +58,5 @@ public class Window extends JPanel {
     public Dimension getDimension(){
         return dimension;
     }
+    public void setMapSize() {outline.setScale(navPanel.getMapSize());}
 }

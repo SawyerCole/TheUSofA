@@ -11,13 +11,13 @@ import java.io.FileNotFoundException;
  * @version 6/8/2017
  */
 public class NavPanel extends JPanel {
-    private JLabel stateLabel, countyLabel;
-    private JTextField stateTextField, countyTextField;
+    private JLabel stateLabel, countyLabel, sizeLabel;
+    private JTextField stateTextField, countyTextField, sizeBox;
     private JCheckBox isCounty;
     private JButton viewCountry, submitButton;
     private Outline outline;
-    private JTextField size;
     private boolean clearBoard = false;
+    private int size = 0;
 
 
     public NavPanel(Outline outline) {
@@ -36,7 +36,8 @@ public class NavPanel extends JPanel {
         countyTextField = new JTextField(15);
         countyTextField.setEnabled(false);
         isCounty = new JCheckBox("This is a County");
-        size = new JTextField("Change Size: ");
+        sizeLabel = new JLabel("Set the sizeBox: ");
+        sizeBox = new JTextField("20",3);
         submitButton = new JButton("Submit");
     }
 
@@ -87,7 +88,8 @@ public class NavPanel extends JPanel {
         //add(isCounty);
         //add(countyLabel);
         //add(countyTextField);
-        add(size);
+        add(sizeLabel);
+        add(sizeBox);
         add(submitButton);
     }
 
@@ -99,5 +101,10 @@ public class NavPanel extends JPanel {
         }
         return false;
     }
+
+    public int getMapSize() {
+        return size;
+    }
+
 
 }
