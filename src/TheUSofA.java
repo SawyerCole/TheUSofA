@@ -7,10 +7,10 @@ import java.awt.*;
 import java.io.FileNotFoundException;
 
 public class TheUSofA extends JFrame {
-    private Outline outline = new Outline();
-    private Window window = new Window(outline);
     //private NavPanel navigationPanel = new NavPanel(outline);
     Dimension dimension = new Dimension(900, 600);
+    private Outline outline = new Outline();
+    private Window window = new Window(outline);
 
     private TheUSofA() throws FileNotFoundException {
 
@@ -23,6 +23,7 @@ public class TheUSofA extends JFrame {
         window.setDimension(getSize());
         setLocationRelativeTo(null);
         setUndecorated(false);
+        setFocusable(true);
         setVisible(true);
         setResizable(true);
     }

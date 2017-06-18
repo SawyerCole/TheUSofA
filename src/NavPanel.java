@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  * NavPanel.java
@@ -10,18 +14,22 @@ import java.io.FileNotFoundException;
  *
  * @version 6/8/2017
  */
-public class NavPanel extends JPanel {
-    private JLabel stateLabel, countyLabel, sizeLabel;
-    private JTextField stateTextField, countyTextField, sizeBox;
-    private JCheckBox isCounty;
+public class NavPanel extends JPanel implements KeyListener {
+    private JLabel stateLabel, sizeLabel;
+    private JComboBox <String> stateTextField;
+    private JComboBox <Integer> sizeBox;
     private JButton viewCountry, submitButton;
     private Outline outline;
     private boolean clearBoard = false;
     private int size = 0;
+    private String[] states;
+    private String[] sizes;
 
 
-    public NavPanel(Outline outline) {
+    public NavPanel(Outline outline) throws FileNotFoundException {
         this.outline = outline;
+        states = createList(true);
+        sizes = createList(false);
         createComponents();
         addComponents();
         componentsActions();
@@ -31,13 +39,10 @@ public class NavPanel extends JPanel {
     private void createComponents() {
         viewCountry = new JButton("View Country");
         stateLabel = new JLabel("State: ");
-        stateTextField = new JTextField(15);
-        countyLabel = new JLabel("County: ");
-        countyTextField = new JTextField(15);
-        countyTextField.setEnabled(false);
-        isCounty = new JCheckBox("This is a County");
+        stateTextField = new JComboBox(states);
+        stateTextField.setEditable(false);
         sizeLabel = new JLabel("Set the sizeBox: ");
-        sizeBox = new JTextField("20",3);
+        sizeBox = new JComboBox(sizes);
         submitButton = new JButton("Submit");
     }
 
@@ -48,10 +53,8 @@ public class NavPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    clearBoard = true;
-                    outline.fileInput(stateTextField.getText());
-                    outline.fileToDrawing();
-
+                    outline.fileInput(states[stateTextField.getSelectedIndex()]);
+                    operationStarted();
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                 }
@@ -62,20 +65,11 @@ public class NavPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    clearBoard = true;
                     outline.fileInput("USA");
-                    outline.fileToDrawing();
+                    operationStarted();
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                 }
-
-            }
-        });
-
-        isCounty.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                countyTextField.setEnabled(isCounty.isSelected());
             }
         });
     }
@@ -85,9 +79,6 @@ public class NavPanel extends JPanel {
         add(viewCountry);
         add(stateLabel);
         add(stateTextField);
-        //add(isCounty);
-        //add(countyLabel);
-        //add(countyTextField);
         add(sizeLabel);
         add(sizeBox);
         add(submitButton);
@@ -106,5 +97,64 @@ public class NavPanel extends JPanel {
         return size;
     }
 
+    private int changeToInt(String string) {
+        int changedToInt = 0;
+        for (int i = 0; i < string.length(); i++) {
+            int charX = string.charAt(i) - 48;
+            if (charX == 10) {
+                charX = 0;
+            } else {
+            }
+            changedToInt += charX * (string.length() - i + 1) * 10;
+        }
+        return changedToInt;
+    }
 
+    private void operationStarted() throws FileNotFoundException {
+        clearBoard = true;
+        outline.fileToDrawing();
+        size = changeToInt(sizes[sizeBox.getSelectedIndex()]);
+    }
+
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        switch (e.getKeyChar()) {
+            case (KeyEvent.VK_ENTER):
+                try {
+                    outline.fileInput(states[stateTextField.getSelectedIndex()]);
+                    operationStarted();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+        }
+    }
+
+
+    private String[] createList(boolean isStates) throws FileNotFoundException {
+        Scanner fileData = new Scanner(new File("src/Data/States.txt"));
+        int numberOfElements, startingLocation;
+        if (isStates) {
+            numberOfElements = 50;
+            startingLocation = 0;
+        } else {
+            numberOfElements = 7;
+            startingLocation = 51;
+        }
+        String[] listFromFile = new String[numberOfElements];
+        for (int stateLocation = startingLocation; stateLocation < numberOfElements; stateLocation++) {
+            listFromFile[stateLocation - startingLocation] = fileData.nextLine();
+        }
+        return listFromFile;
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }

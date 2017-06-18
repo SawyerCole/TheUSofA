@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileNotFoundException;
 
 /**
  * Purpose:
@@ -11,7 +12,7 @@ public class Window extends JPanel {
     private Dimension  dimension;
     private NavPanel navPanel;
 
-    public Window(Outline outline) {
+    public Window(Outline outline) throws FileNotFoundException {
         this.outline = outline;
         navPanel = new NavPanel(outline);
         add(navPanel);
@@ -25,7 +26,7 @@ public class Window extends JPanel {
 
 
     private void paintInterval() {
-        //setMapSize();
+        setMapSize();
         this.repaint();
     }
 
@@ -52,11 +53,13 @@ public class Window extends JPanel {
         }
     }
 
-    void setDimension(Dimension dimension) {
-        this.dimension = dimension;
-    }
     public Dimension getDimension(){
         return dimension;
     }
+
+    void setDimension(Dimension dimension) {
+        this.dimension = dimension;
+    }
+
     public void setMapSize() {outline.setScale(navPanel.getMapSize());}
 }
