@@ -33,6 +33,7 @@ public class NavPanel extends JPanel implements KeyListener {
         createComponents();
         addComponents();
         componentsActions();
+
     }
 
     // Creates navigation bar components
@@ -40,7 +41,7 @@ public class NavPanel extends JPanel implements KeyListener {
         viewCountry = new JButton("View Country");
         stateLabel = new JLabel("State: ");
         stateTextField = new JComboBox(states);
-        stateTextField.setEditable(false);
+        stateTextField.setEditable(true);
         sizeLabel = new JLabel("Set the sizeBox: ");
         sizeBox = new JComboBox(sizes);
         submitButton = new JButton("Submit");
@@ -132,18 +133,17 @@ public class NavPanel extends JPanel implements KeyListener {
 
 
     private String[] createList(boolean isStates) throws FileNotFoundException {
-        Scanner fileData = new Scanner(new File("src/Data/States.txt"));
-        int numberOfElements, startingLocation;
+        int numberOfElements;
+        String[] listFromFile;
         if (isStates) {
+            Scanner fileData = new Scanner(new File("src/Data/States.txt"));
             numberOfElements = 50;
-            startingLocation = 0;
+            listFromFile = new String[numberOfElements];
+            for (int i = 0; i < numberOfElements && fileData.hasNextLine(); i++) {
+                listFromFile[i] = fileData.nextLine();
+            }
         } else {
-            numberOfElements = 7;
-            startingLocation = 51;
-        }
-        String[] listFromFile = new String[numberOfElements];
-        for (int stateLocation = startingLocation; stateLocation < numberOfElements; stateLocation++) {
-            listFromFile[stateLocation - startingLocation] = fileData.nextLine();
+            listFromFile = new String[]{"1", "2", "3", "4", "5", "6", "7"};
         }
         return listFromFile;
     }
