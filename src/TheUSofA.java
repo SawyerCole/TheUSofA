@@ -5,13 +5,14 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
-
+//The main class
 public class TheUSofA extends JFrame {
     //private NavPanel navigationPanel = new NavPanel(outline);
     Dimension dimension = new Dimension(900, 600);
     private Outline outline = new Outline();
     private Window window = new Window(outline);
 
+    //This works as the main method which pulls together all of the classes
     private TheUSofA() throws FileNotFoundException {
 
         add(window);
@@ -20,7 +21,6 @@ public class TheUSofA extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         setSize(dimension);
-        window.setDimension(getSize());
         setLocationRelativeTo(null);
         setUndecorated(false);
         setFocusable(true);
@@ -28,6 +28,7 @@ public class TheUSofA extends JFrame {
         setResizable(true);
     }
 
+    //Uses the private main above
     public static void main(String[] args) throws FileNotFoundException {
         new TheUSofA();
     }
