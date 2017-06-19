@@ -94,6 +94,7 @@ public class NavPanel extends JPanel implements KeyListener {
         return false;
     }
 
+    // returns the size of the map
     public int getMapSize() {
         return size;
     }
@@ -111,6 +112,7 @@ public class NavPanel extends JPanel implements KeyListener {
         return changedToInt;
     }
 
+    // updates the map data so
     private void operationStarted() throws FileNotFoundException {
         clearBoard = true;
         outline.fileToDrawing();
