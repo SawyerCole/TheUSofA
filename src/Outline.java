@@ -7,24 +7,12 @@ import java.util.Scanner;
 public class Outline {
     //Sets a scaling factor so the states can be scaled however the user chooses.
     private int scale = 20;
-    private String subregionName;
     private String stateName;
     private ArrayList <int[]> lines = new ArrayList();
 
 
-    Outline() {
-    }
+//    Outline() {}
 
-
-    //The intro text that explains the program
-    public void intro() {
-        System.out.println("This program draws a visualization of");
-        System.out.println("data from a given file. Enter");
-        System.out.println("- the 2 letter abbreviation for each state");
-        System.out.println("- USA for all of the US by state.");
-        System.out.println("Capitalization does not matter.");
-        System.out.println();
-    }
 
     //Allows the user to input what they want to see (a state, the country or the country by county) and it will give the file of the chosen image to the next computer
     public void fileInput(String name) throws FileNotFoundException {
@@ -52,21 +40,21 @@ public class Outline {
         lines = new ArrayList<>();
         Scanner file = new Scanner(new File("src\\data\\" + stateName + ".txt"));
         double minLong = file.nextDouble();
-        double minLat = file.nextDouble();
-        double maxLong = file.nextDouble();
+        file.nextDouble();
+        file.nextDouble();
         double maxLat = file.nextDouble();
         double lat1;
         double long1;
         double lat2;
         double long2;
-        int subregions = file.nextInt();
+        file.nextInt();
         //After the first 5 different variables everything repeats in the same manner so it will repeat this way with every subregion
         while (file.hasNext()) {
 
             //Used to skip the gap between subregions
             file.next();
-            String subregionName = file.nextLine();
-            String regionName = file.next();
+            file.nextLine();
+            file.next();
             int points = file.nextInt();
             //Added the scale so that the state/country would be better centered
             long1 = (file.nextDouble() - minLong) * scale + scale;
@@ -104,22 +92,22 @@ public class Outline {
 
     }
 
-    //Used to see if the user wants to continue or not
-    public boolean toContinue() {
-        Scanner files = new Scanner(System.in);
-        System.out.print("Would you like to view somewhere new?");
-        String viewNew = files.next();
-        System.out.println();
-        boolean response = false;
-        while (!response) {
-            if (viewNew.charAt(0) == ('y') || viewNew.charAt(0) == ('Y') || viewNew.charAt(0) == ('n') || viewNew.charAt(0) == ('N')) {
-                response = true;
-            } else {
-                System.out.println("I didn't understand that.");
-            }
-        }
-        return viewNew.charAt(0) == ('y') || viewNew.charAt(0) == ('Y');
-    }
+//    //Used to see if the user wants to continue or not
+//    public boolean toContinue() {
+//        Scanner files = new Scanner(System.in);
+//        System.out.print("Would you like to view somewhere new?");
+//        String viewNew = files.next();
+//        System.out.println();
+//        boolean response = false;
+//        while (!response) {
+//            if (viewNew.charAt(0) == ('y') || viewNew.charAt(0) == ('Y') || viewNew.charAt(0) == ('n') || viewNew.charAt(0) == ('N')) {
+//                response = true;
+//            } else {
+//                System.out.println("I didn't understand that.");
+//            }
+//        }
+//        return viewNew.charAt(0) == ('y') || viewNew.charAt(0) == ('Y');
+//    }
 
 
 
