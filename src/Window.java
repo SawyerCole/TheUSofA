@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 public class Window extends JPanel {
 
     private Timer _timer;
+    //Creates an outline class which draws the states/country
     private Outline outline;
     private NavPanel navPanel;
 
@@ -29,7 +30,7 @@ public class Window extends JPanel {
         this.repaint();
     }
 
-
+    //Actually draws the components and repeats it
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -45,7 +46,7 @@ public class Window extends JPanel {
 
     }
 
-    // draws the lines of the outline line by line
+    //Tells the paint method what to draw
     private void paintOutline(Graphics2D g2d) {
         for (int[] cords : outline.getLines()) {
             g2d.drawLine(cords[1], cords[0] + 30, cords[3], cords[2] + 30);
