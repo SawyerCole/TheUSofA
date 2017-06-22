@@ -41,7 +41,7 @@ public class NavPanel extends JPanel implements KeyListener {
         viewCountry = new JButton("View Country");
         stateLabel = new JLabel("State: ");
         stateTextField = new JComboBox(states);
-        stateTextField.setEditable(true);
+        stateTextField.setEditable(false);
         sizeLabel = new JLabel("Set the sizeBox: ");
         sizeBox = new JComboBox(sizes);
         submitButton = new JButton("Submit");
