@@ -12,7 +12,7 @@ import java.util.Scanner;
  * Assignment: Final Project
  * Purpose: Operates the navigation panel at the top of the screen
  *
- * @version 6/8/2017
+ * @version 6/19/2017
  */
 public class NavPanel extends JPanel implements KeyListener {
     private JLabel stateLabel, sizeLabel;
@@ -82,6 +82,7 @@ public class NavPanel extends JPanel implements KeyListener {
         add(sizeLabel);
         add(sizeBox);
         add(submitButton);
+        addKeyListener(this); // doesn't work
     }
 
     // returns a boolean for whether or not we clear the board
@@ -120,7 +121,7 @@ public class NavPanel extends JPanel implements KeyListener {
 
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e) { // doesn't work
         switch (e.getKeyChar()) {
             case (KeyEvent.VK_ENTER):
                 try {

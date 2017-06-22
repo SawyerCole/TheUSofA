@@ -3,7 +3,11 @@ import java.awt.*;
 import java.io.FileNotFoundException;
 
 /**
- * Purpose:
+ * Window.java
+ * Assignment: Final Project
+ * Purpose: Creates the JPanel that the map is drawn on
+ *
+ * @version 6/19/2017
  */
 public class Window extends JPanel {
 
@@ -24,7 +28,7 @@ public class Window extends JPanel {
     }
 
 
-
+    // runs every tick to set map size
     private void paintInterval() {
         setMapSize();
         this.repaint();

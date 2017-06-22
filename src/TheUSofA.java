@@ -1,7 +1,10 @@
 /**
- * Created by ros_vishan on 6/5/2017.
+ * TheUSofA.java
+ * Assignment: Final Project
+ * Purpose: Starts the program and creates components
+ *
+ * @version 6/19/2017
  */
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
