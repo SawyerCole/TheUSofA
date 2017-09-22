@@ -18,7 +18,7 @@ public class NavPanel extends JPanel implements KeyListener {
     private JLabel stateLabel, sizeLabel;
     private JComboBox <String> stateTextField;
     private JComboBox <Integer> sizeBox;
-    private JButton viewCountry, submitButton;
+    private JButton viewCountryCounty, viewCountry, submitButton;
     private Outline outline;
     private boolean clearBoard = false;
     private int size = 0;
@@ -38,6 +38,7 @@ public class NavPanel extends JPanel implements KeyListener {
 
     // Creates navigation bar components
     private void createComponents() {
+        viewCountryCounty = new JButton("View Country by County");
         viewCountry = new JButton("View Country");
         stateLabel = new JLabel("State: ");
         stateTextField = new JComboBox(states);
@@ -67,6 +68,20 @@ public class NavPanel extends JPanel implements KeyListener {
             public void actionPerformed(ActionEvent e) {
                 try {
                     outline.fileInput("USA");
+                    operationStarted();
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
+
+        viewCountryCounty.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    outline.fileInput("USA-County");
+                    outline.fileInput("USA-County2");
+                    outline.fileInput("USA-County3");
                     operationStarted();
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();

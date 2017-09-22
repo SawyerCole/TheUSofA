@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 //The main class
 public class TheUSofA extends JFrame {
     //private NavPanel navigationPanel = new NavPanel(outline);
-    Dimension dimension = new Dimension(900, 600);
+    Dimension dimension = new Dimension(1200, 600);
     private Outline outline = new Outline();
     private Window window = new Window(outline);
 
