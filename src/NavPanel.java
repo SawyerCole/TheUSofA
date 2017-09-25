@@ -80,9 +80,16 @@ public class NavPanel extends JPanel implements KeyListener {
             public void actionPerformed(ActionEvent e) {
                 try {
                     outline.fileInput("USA-County");
-                    outline.fileInput("USA-County2");
-                    outline.fileInput("USA-County3");
+                    //outline.fileToDrawing();
                     operationStarted();
+                    outline.fileInput("USA-County2");
+                    outline.fileToDrawing();
+                    size = changeToInt(sizes[sizeBox.getSelectedIndex()]);
+                    //operationStarted();
+                    outline.fileInput("USA-County3");
+                    outline.fileToDrawing();
+                    size = changeToInt(sizes[sizeBox.getSelectedIndex()]);
+                    //operationStarted();
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                 }
@@ -92,6 +99,7 @@ public class NavPanel extends JPanel implements KeyListener {
 
     // adds navigation bar components to the panel
     private void addComponents() {
+        add(viewCountryCounty);
         add(viewCountry);
         add(stateLabel);
         add(stateTextField);

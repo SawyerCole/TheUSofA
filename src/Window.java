@@ -43,7 +43,7 @@ public class Window extends JPanel {
         // draws a white rectangle to "clear" the bored
         if (navPanel.getClearBoard()) {
             g2d.setColor(Color.WHITE);
-            g2d.fillRect(0, 30, 1000, 1000);
+            g2d.fillRect(0, 30, 1200, 1000);
             g2d.setColor(Color.BLACK);
         }
         paintOutline(g2d);

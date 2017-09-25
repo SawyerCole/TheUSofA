@@ -25,7 +25,7 @@ public class Outline {
             }
             if (name.equalsIgnoreCase(state)) {
                 correctRegion = true;
-                if (name.length() > 2 && !name.equalsIgnoreCase("USA") || name.equalsIgnoreCase("US")) {
+                if (name.length() > 2 && !name.equalsIgnoreCase("USA") || name.equalsIgnoreCase("US") || name.equalsIgnoreCase("USA-County") || name.equalsIgnoreCase("USA-County2") || name.equalsIgnoreCase("USA-County3")) {
                     state = file.next();
                     this.stateName = state.toUpperCase();
                 } else {
