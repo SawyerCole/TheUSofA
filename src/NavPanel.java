@@ -55,6 +55,7 @@ public class NavPanel extends JPanel implements KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    clearBoard = true;
                     outline.fileInput(states[stateTextField.getSelectedIndex()]);
                     operationStarted();
                 } catch (FileNotFoundException e1) {
@@ -67,6 +68,7 @@ public class NavPanel extends JPanel implements KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    clearBoard = true;
                     outline.fileInput("USA");
                     operationStarted();
                 } catch (FileNotFoundException e1) {
@@ -79,9 +81,11 @@ public class NavPanel extends JPanel implements KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    clearBoard = true;
                     outline.fileInput("USA-County");
-                    //outline.fileToDrawing();
-                    operationStarted();
+                    outline.fileToDrawing();
+                    size = changeToInt(sizes[sizeBox.getSelectedIndex()]);
+                    //operationStarted();
                     outline.fileInput("USA-County2");
                     outline.fileToDrawing();
                     size = changeToInt(sizes[sizeBox.getSelectedIndex()]);
@@ -138,7 +142,7 @@ public class NavPanel extends JPanel implements KeyListener {
 
     // updates the map data so
     private void operationStarted() throws FileNotFoundException {
-        clearBoard = true;
+        //clearBoard = true;
         outline.fileToDrawing();
         size = changeToInt(sizes[sizeBox.getSelectedIndex()]);
     }
