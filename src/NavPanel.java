@@ -21,7 +21,7 @@ public class NavPanel extends JPanel implements KeyListener {
     private JButton viewCountryCounty, viewCountry, submitButton;
     private Outline outline;
     private boolean clearBoard = false;
-    private int size = 0;
+    private static int scale = 0;
     private String[] states;
     private String[] sizes;
 
@@ -55,7 +55,6 @@ public class NavPanel extends JPanel implements KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    clearBoard = true;
                     outline.fileInput(states[stateTextField.getSelectedIndex()]);
                     operationStarted();
                 } catch (FileNotFoundException e1) {
@@ -68,7 +67,6 @@ public class NavPanel extends JPanel implements KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    clearBoard = true;
                     outline.fileInput("USA");
                     operationStarted();
                 } catch (FileNotFoundException e1) {
@@ -81,25 +79,24 @@ public class NavPanel extends JPanel implements KeyListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    outline.clearLines();
                     clearBoard = true;
                     outline.fileInput("USA-County");
+                    scale = changeToInt(sizes[0]);
                     outline.fileToDrawing();
-                    size = changeToInt(sizes[sizeBox.getSelectedIndex()]);
-                    //operationStarted();
                     outline.fileInput("USA-County2");
+                    scale = changeToInt(sizes[0]);
                     outline.fileToDrawing();
-                    size = changeToInt(sizes[sizeBox.getSelectedIndex()]);
-                    //operationStarted();
                     outline.fileInput("USA-County3");
+                    scale = changeToInt(sizes[0]);
                     outline.fileToDrawing();
-                    size = changeToInt(sizes[sizeBox.getSelectedIndex()]);
-                    //operationStarted();
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                 }
             }
         });
     }
+
 
     // adds navigation bar components to the panel
     private void addComponents() {
@@ -123,8 +120,8 @@ public class NavPanel extends JPanel implements KeyListener {
     }
 
     // returns the size of the map
-    public int getMapSize() {
-        return size;
+    public static int getMapSize() {
+        return scale;
     }
 
     private int changeToInt(String string) {
@@ -140,11 +137,12 @@ public class NavPanel extends JPanel implements KeyListener {
         return changedToInt;
     }
 
-    // updates the map data so
+    // updates the map data so it represents the file that was asked for
     private void operationStarted() throws FileNotFoundException {
-        //clearBoard = true;
+        outline.clearLines();
+        clearBoard = true;
+        scale = changeToInt(sizes[sizeBox.getSelectedIndex()]);
         outline.fileToDrawing();
-        size = changeToInt(sizes[sizeBox.getSelectedIndex()]);
     }
 
 
@@ -177,6 +175,7 @@ public class NavPanel extends JPanel implements KeyListener {
         }
         return listFromFile;
     }
+
 
     @Override
     public void keyPressed(KeyEvent e) {

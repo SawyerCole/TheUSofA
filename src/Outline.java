@@ -37,7 +37,7 @@ public class Outline {
 
     //Draws the lines outlining the states and counties using the latitude and longitude lines from the file of the chosen state
     public void fileToDrawing() throws FileNotFoundException {
-        lines = new ArrayList<>();
+        setScale(scale);
         Scanner file = new Scanner(new File("src\\data\\" + stateName + ".txt"));
         double minLong = file.nextDouble();
         file.nextDouble();
@@ -47,12 +47,12 @@ public class Outline {
         double long1;
         double lat2;
         double long2;
+        String subregionName;
         file.nextInt();
         //After the first 5 different variables everything repeats in the same manner so it will repeat this way with every subregion
         while (file.hasNext()) {
-
             //Used to skip the gap between subregions
-            file.next();
+            subregionName = file.next();
             file.nextLine();
             file.next();
             int points = file.nextInt();
@@ -117,5 +117,7 @@ public class Outline {
         return lines;
     }
     // sets the scale
-    public void setScale(int scale) { this.scale = scale; }
+    public void setScale(int scale) { this.scale = NavPanel.getMapSize(); }
+    public void clearLines(){ lines.clear();}
+
 }

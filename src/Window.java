@@ -58,5 +58,7 @@ public class Window extends JPanel {
     }
 
     // sets the size of the map
-    public void setMapSize() {outline.setScale(navPanel.getMapSize());}
+    public void setMapSize() {int size = 1;}
+
 }
+
