@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -9,9 +8,8 @@ public class Outline {
     private int scale = 20;
     private String stateName;
     private ArrayList <int[]> lines = new ArrayList();
-
-
-//    Outline() {}
+    //private ArrayList<lines> counties = new ArrayList();
+    //private ArrayList<String[]> states = new ArrayList();
 
 
     //Allows the user to input what they want to see (a state, the country or the country by county) and it will give the file of the chosen image to the next computer
@@ -20,11 +18,14 @@ public class Outline {
         boolean correctRegion = false;
         while (file.hasNext() && !correctRegion) {
             String state = file.next();
+            //This if statement checks file for states starting in "new" (ex. New York)
             if (state.equalsIgnoreCase("New")) {
                 state += " " + file.next();
             }
+            //Looks into file with all the state names to fine the name inputted
             if (name.equalsIgnoreCase(state)) {
                 correctRegion = true;
+                //If the input is any one of the strings below it will go straight to its correct state abbreviation/name, otherwise if it is an individual state it will just use that
                 if (name.length() > 2 && !name.equalsIgnoreCase("USA") || name.equalsIgnoreCase("US") || name.equalsIgnoreCase("USA-County") || name.equalsIgnoreCase("USA-County2") || name.equalsIgnoreCase("USA-County3")) {
                     state = file.next();
                     this.stateName = state.toUpperCase();
@@ -48,14 +49,20 @@ public class Outline {
         double lat2;
         double long2;
         String subregionName;
+        String nameOfState;
+        int points;
         file.nextInt();
+        int j = 0;
         //After the first 5 different variables everything repeats in the same manner so it will repeat this way with every subregion
         while (file.hasNext()) {
+            j++;
             //Used to skip the gap between subregions
-            subregionName = file.next();
             file.nextLine();
-            file.next();
-            int points = file.nextInt();
+            file.nextLine();
+            subregionName = file.nextLine();
+            //counties.add(subregionName);
+            nameOfState = file.next();
+            points = file.nextInt();
             //Added the scale so that the state/country would be better centered
             long1 = (file.nextDouble() - minLong) * scale + scale;
             lat1 = (maxLat - file.nextDouble()) * scale + scale;
@@ -89,27 +96,7 @@ public class Outline {
                 lat1 = lat2;
             }
         }
-
     }
-
-//    //Used to see if the user wants to continue or not
-//    public boolean toContinue() {
-//        Scanner files = new Scanner(System.in);
-//        System.out.print("Would you like to view somewhere new?");
-//        String viewNew = files.next();
-//        System.out.println();
-//        boolean response = false;
-//        while (!response) {
-//            if (viewNew.charAt(0) == ('y') || viewNew.charAt(0) == ('Y') || viewNew.charAt(0) == ('n') || viewNew.charAt(0) == ('N')) {
-//                response = true;
-//            } else {
-//                System.out.println("I didn't understand that.");
-//            }
-//        }
-//        return viewNew.charAt(0) == ('y') || viewNew.charAt(0) == ('Y');
-//    }
-
-
 
     // Getters and Setters
     // Returns an array of an array of points for the lines to be drawn
@@ -118,6 +105,13 @@ public class Outline {
     }
     // sets the scale
     public void setScale(int scale) { this.scale = NavPanel.getMapSize(); }
+    //Clears the lines array so that it won't draw stuff that has already been drawn
     public void clearLines(){ lines.clear();}
+
+    public String getStateName() {return stateName;}
+
+    //public void clearCountries(){counties.clear();}
+
+    //public ArrayList<String> getCounties() {return counties;}
 
 }

@@ -1,10 +1,8 @@
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -21,7 +19,7 @@ public class NavPanel extends JPanel implements KeyListener {
     private JButton viewCountryCounty, viewCountry, submitButton;
     private Outline outline;
     private boolean clearBoard = false;
-    private static int scale = 0;
+    private static int scale = 1;
     private String[] states;
     private String[] sizes;
 
@@ -80,6 +78,7 @@ public class NavPanel extends JPanel implements KeyListener {
             public void actionPerformed(ActionEvent e) {
                 try {
                     outline.clearLines();
+                    //outline.clearCountries();
                     clearBoard = true;
                     outline.fileInput("USA-County");
                     scale = changeToInt(sizes[0]);
@@ -140,8 +139,13 @@ public class NavPanel extends JPanel implements KeyListener {
     // updates the map data so it represents the file that was asked for
     private void operationStarted() throws FileNotFoundException {
         outline.clearLines();
+        //outline.clearCountries();
         clearBoard = true;
-        scale = changeToInt(sizes[sizeBox.getSelectedIndex()]);
+        if(outline.getStateName().equals("USA")){
+            scale = changeToInt(sizes[0]);
+        } else {
+            scale = changeToInt(sizes[sizeBox.getSelectedIndex()]);
+        }
         outline.fileToDrawing();
     }
 
