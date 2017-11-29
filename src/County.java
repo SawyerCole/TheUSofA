@@ -11,12 +11,17 @@ import java.util.*;
 
 public class County {
     String countyName;
-    ArrayList<Point> boundaries;
+
+    public void setBoundaries(ArrayList<Point> boundaries) {
+        this.boundaries = boundaries;
+    }
+
+    ArrayList<Point> boundaries = new ArrayList<>();
     Point q;
 
-    public County() {
-        String name;
-        ArrayList<Point> boundaries = new ArrayList();
+    public County(String SubregionName, ArrayList<Point> boundaries) {
+        this.countyName = SubregionName;
+        this.boundaries = boundaries;
     }
 
     /*
@@ -24,19 +29,26 @@ public class County {
         lines.equals(lines);
     }
     */
+    public void setCountyName(String subregionName){
+        this.countyName = subregionName;
+    }
+
+    public void clearBoundaries(){boundaries.clear();}
+
     public void addBoundary(Point p){
         boundaries.add(p);
     }
-    public boolean insideCounty(){
+
+    public boolean insideCounty(MouseEvent event){
         int max;
         int min;
+        //for(int i : )
         for (int i = 0; i < boundaries.size(); i++) {
-            if (MouseEvent. <= max(boundaries.get(i).x, boundaries.get(i+1).x) && MouseEvent.getXOnScreen() >= min(boundaries.get(i).x, boundaries.get(i+1).x) && MouseEvent.getYOnScreen() <= max(boundaries.get(i).y, boundaries.get(i+1).y) && MouseEvent.getYOnScreen() >= min(boundaries.get(i).y, boundaries.get(i+1).y)){
+            if (event.getX()<= max(boundaries.get(i).x, boundaries.get(i+1).x) && event.getX() >= min(boundaries.get(i).x, boundaries.get(i+1).x) && event.getY() <= max(boundaries.get(i).y, boundaries.get(i+1).y) && event.getY() >= min(boundaries.get(i).y, boundaries.get(i+1).y)){
                 return true;
-            } else {
-                return false;
             }
         }
+        return false;
     }
 
     private static int max(int cord, int cord1) {
