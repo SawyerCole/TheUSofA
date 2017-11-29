@@ -44,6 +44,7 @@ public class NavPanel extends JPanel implements KeyListener {
         sizeLabel = new JLabel("Set the sizeBox: ");
         sizeBox = new JComboBox(sizes);
         submitButton = new JButton("Submit");
+
     }
 
     // Creates navigation bar's action(s)

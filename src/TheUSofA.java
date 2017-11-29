@@ -19,10 +19,8 @@ public class TheUSofA extends JFrame {
     private TheUSofA() throws FileNotFoundException {
 
         add(window);
-        //window.add(navigationPanel);
         setTitle("The US of A");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         setSize(dimension);
         setLocationRelativeTo(null);
         setUndecorated(false);

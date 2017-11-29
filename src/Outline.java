@@ -2,14 +2,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.awt.*;
 
 public class Outline {
     //Sets a scaling factor so the states can be scaled however the user chooses.
     private int scale = 20;
     private String stateName;
     private ArrayList <int[]> lines = new ArrayList();
-    //private ArrayList<lines> counties = new ArrayList();
-    //private ArrayList<String[]> states = new ArrayList();
+
 
 
     //Allows the user to input what they want to see (a state, the country or the country by county) and it will give the file of the chosen image to the next computer
@@ -38,6 +38,8 @@ public class Outline {
 
     //Draws the lines outlining the states and counties using the latitude and longitude lines from the file of the chosen state
     public void fileToDrawing() throws FileNotFoundException {
+        ArrayList<Point> boundaries = new ArrayList<>();
+        County county = new County("null", boundaries);
         setScale(scale);
         Scanner file = new Scanner(new File("src\\data\\" + stateName + ".txt"));
         double minLong = file.nextDouble();
@@ -52,6 +54,7 @@ public class Outline {
         String nameOfState;
         int points;
         file.nextInt();
+        Point p = new Point();
         int j = 0;
         //After the first 5 different variables everything repeats in the same manner so it will repeat this way with every subregion
         while (file.hasNext()) {
@@ -94,7 +97,13 @@ public class Outline {
                 lines.add(line);
                 long1 = long2;
                 lat1 = lat2;
+                p.x = (line[0]);
+                p.y = line[1];
+                boundaries.add(p);
             }
+            county.setCountyName(subregionName);
+            county.setBoundaries(boundaries);
+            AllCounties.add(county);
         }
     }
 
@@ -109,6 +118,13 @@ public class Outline {
     public void clearLines(){ lines.clear();}
 
     public String getStateName() {return stateName;}
+
+    public ArrayList<County> getAllCounties() {
+        return AllCounties;
+    }
+
+    ArrayList<County> AllCounties = new ArrayList<>();
+
 
     //public void clearCountries(){counties.clear();}
 
