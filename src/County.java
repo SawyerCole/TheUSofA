@@ -27,18 +27,7 @@ public class County {
     public void addBoundary(Point p){
         boundaries.add(p);
     }
-    ////public boolean insideCounty(){
-    //  //  int max;
-    //    //int min;
-    //    //for (int i = 0; i < boundaries.size(); i++) {
-    //        if (MouseEvent. <= max(boundaries.get(i).x, boundaries.get(i+1).x) && MouseEvent.getXOnScreen() >= min(boundaries.get(i).x, boundaries.get(i+1).x) && MouseEvent.getYOnScreen() <= max(boundaries.get(i).y, boundaries.get(i+1).y) && MouseEvent.getYOnScreen() >= min(boundaries.get(i).y, boundaries.get(i+1).y)){
-    //            return true;
-    //        } else {
-    //            return false;
-    //        }
-    //    }
-    //}
-//
+
     private static int max(int cord, int cord1) {
         if(cord > cord1){
             return cord;
