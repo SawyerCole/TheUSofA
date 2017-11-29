@@ -42,9 +42,9 @@ public class Window extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         // draws a white rectangle to "clear" the bored
         if (navPanel.getClearBoard()) {
-            g2d.setColor(Color.WHITE);
+            g2d.setColor(Color.GREEN);
             g2d.fillRect(0, 30, 1200, 1000);
-            g2d.setColor(Color.BLACK);
+            g2d.setColor(Color.PINK);
         }
         paintOutline(g2d);
 
@@ -53,6 +53,7 @@ public class Window extends JPanel {
     //Tells the paint method what to draw
     private void paintOutline(Graphics2D g2d) {
         for (int[] cords : outline.getLines()) {
+            g2d.setColor(Color.PINK);
             g2d.drawLine(cords[1], cords[0] + 30, cords[3], cords[2] + 30);
         }
     }
